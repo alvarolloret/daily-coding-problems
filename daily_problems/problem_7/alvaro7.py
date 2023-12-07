@@ -24,30 +24,34 @@ mapping = {
     "w": 23,
     "x": 24,
     "y": 25,
-    "z": 26
+    "z": 26,
 }
+
 
 def num_decodings(message):
     if not message:
         return 0
-    
+
     length = len(message)
     dp = [0] * (length + 1)
     dp[0] = 1
-    dp[1] = 0 if message[0] == '0' else 1
-    
+    dp[1] = 0 if message[0] == "0" else 1
+
     for i in range(2, length + 1):
-        one_digit = int(message[i - 1:i])
-        two_digits = int(message[i - 2:i])
-        
+        one_digit = int(message[i - 1 : i])
+        two_digits = int(message[i - 2 : i])
+
         if 1 <= one_digit <= 9:
             dp[i] += dp[i - 1]
         if 10 <= two_digits <= 26:
             dp[i] += dp[i - 2]
-    
+
     return dp[length]
 
+
 import ipdb
+
+
 ipdb.set_trace()
 # Example usage
 encoded_message = "111"
